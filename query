@@ -1,0 +1,40 @@
+# Write your query or mutation here
+
+### create teacher
+#mutation{createTeacher(id: 1, firstName: "Levent", lastName: "Tastan"){id}}
+#mutation{createTeacher(id: 2, firstName: "Kerem", lastName: "Durak"){id}}
+#mutation{createTeacher(id: 3, firstName: "Umit", lastName: "Ozdemir"){id}}
+
+### create classroom
+#mutation{createClassroom(id: 1, name: "Comp Eng", code: "C", teacherId: 1){id}}
+#mutation{createClassroom(id: 2, name: "History", code:"H", teacherId: 2){id}}
+#mutation{createClassroom(id: 3, name: "Biology", code: "B", teacherId: 3){id}}
+
+### create student
+#mutation{createStudent(id: 1, name: "Veysel", age: 25,  email: "veysel@kloia.com", classroomId: 1){id}}
+#mutation{createStudent(id: 2, name: "Burak", age: 29,  email: "burak@kloia.com", classroomId: 1){id}}
+#mutation{createStudent(id: 3, name: "Hikmet", age: 23,  email: "hikmet@kloia.com", classroomId: 2){id}}
+
+### get all teachers
+#query{getTeacher{id, lastName, firstName}}
+
+### get all classrooms
+#query{getClassroom{id, name, code, teacher{firstName}}}
+
+### get all stundets
+#query{getStudent{id, name, age, email, classroom{id, name, teacher{id, firstName}}}}
+
+### get teacher by id
+#query{getTeacherById(id: 1){id, lastName, firstName}}
+
+### get classroom by id
+#query{getClassroomById(id: 1){name, code, teacher{firstName, lastName}}}
+
+### get stundet by id
+#query{getStudentById(id:1){name, classroom{name, teacher{firstName}}}}
+
+### get classroom by ids
+#query{getClassroomByIds(ids: [1,2]){name}}
+
+### get teacher by ids
+#query{getTeacherByIds(ids: [1,2]){firstName, lastName}}

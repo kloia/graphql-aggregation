@@ -1,0 +1,47 @@
+type Query {
+    getStudent: [Student!]!
+    getStudentById(id: Int!): Student!
+    getClassroom: [Classroom!]!
+    getClassroomById(id: Int!): Classroom!
+    getClassroomByIds(ids: [Int!]!): [Classroom!]!
+    getTeacher: [Teacher!]!
+    getTeacherById(id: Int!): Teacher!
+    getTeacherByIds(ids: [Int!]!): [Teacher!]!
+}
+
+type Mutation {
+    createStudent(id: Int!, name: String!, age: Int!, email: String!, classroomId: Int!): Student!
+    deleteStudent(id: Int!): Int
+    updateStudent(id: Int!, name: String, age: Int, email: String, classroomId: Int): Student!
+    createClassroom(id: Int!, name: String!, code: String!, teacherId: Int): Classroom!
+    deleteClassroom(id: Int!): Int
+    updateClassroom(id: Int!, name: String, code: String, teacherId: Int): Classroom!
+    createTeacher(id: Int!, firstName: String!, lastName: String!, classroomId: Int): Teacher!
+    deleteTeacher(id: Int!): Int
+    updateTeacher(id: Int!, firstName: String, lastName: String, classroomId: Int): Teacher!
+}
+
+type Student {
+    id: ID!
+    name: String!
+    age: Int!
+    email: String!
+    classroomId: Int!
+    classroom: Classroom!
+}
+
+type Classroom {
+    id: ID!
+    name: String!
+    code: String!
+    teacherId: Int!
+    teacher: Teacher
+}
+
+type Teacher {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    classroomId: Int!
+    classroom: Classroom
+}
